@@ -1,0 +1,133 @@
+{\rtf1\ansi\ansicpg1251\deff0\nouicompat\deflang1049{\fonttbl{\f0\fnil\fcharset204 Calibri;}{\f1\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\ul\b\f0\fs22\'c7\'e0\'e4\'e0\'f7\'e0 1\ulnone\b0\par
+\'cd\'e0\'ef\'e8\'f1\'e0\'f2\'fc \'f4\'f3\'ed\'ea\'f6\'e8\'fe \'ed\'e0 \'e2\'f5\'ee\'e4 \'ea\'ee\'f2\'ee\'f0\'ee\'e9 \'ef\'ee\'e4\'e0\'e5\'f2\'f1\'ff \'f1\'f2\'f0\'ee\'ea\'e0, \'f1\'ee\'f1\'f2\'ee\'ff\'f9\'e0\'ff \'e8\'e7 \'eb\'e0\'f2\'e8\'ed\'f1\'ea\'e8\'f5 \'e1\'f3\'ea\'e2. \'d4\'f3\'ed\'ea\'f6\'e8\'ff \'e4\'ee\'eb\'e6\'ed\'e0 \'e2\'e5\'f0\'ed\'f3\'f2\'fc \'ea\'ee\'eb\'e8\'f7\'e5\'f1\'f2\'e2\'ee \'e3\'eb\'e0\'f1\'ed\'fb\'f5 \'e1\'f3\'ea\'e2 (a, e, i, o, u) \'e2 \'fd\'f2\'ee\'e9 \'f1\'f2\'f0\'ee\'ea\'e5. \'cd\'e0\'ef\'e8\'f1\'e0\'f2\'fc \'f2\'e5\'f1\'f2\'fb \'e4\'eb\'ff \'ea\'ee\'e4\'e0\f1\lang1033  \f0\lang1049\par
+def count_vowels(input_string):\par
+    count = 0\par
+    for char in input_string:\par
+        if char in "aeiouAEIOU":\par
+            count += 1\par
+    return count\line\b\'d2\'e5\'f1\'f2\'fb:\b0\par
+def test_count_vowels():\par
+    assert count_vowels("hello") == 2\par
+    assert count_vowels("world") == 1\par
+    assert count_vowels("aEiOu") == 5\par
+    assert count_vowels("") == 0\par
+    assert count_vowels("xyz") == 0\par
+\ul\b\'c7\'e0\'e4\'e0\'f7\'e0 2\ulnone\b0\par
+\'cd\'e0\'ef\'e8\'f1\'e0\'f2\'fc \'f4\'f3\'ed\'ea\'f6\'e8\'fe \'ed\'e0 \'e2\'f5\'ee\'e4, \'ea\'ee\'f2\'ee\'f0\'ee\'e9 \'ef\'ee\'e4\'e0\'e5\'f2\'f1\'ff \'f1\'f2\'f0\'ee\'ea\'e0. \'d4\'f3\'ed\'ea\'f6\'e8\'ff \'e4\'ee\'eb\'e6\'ed\'e0 \'e2\'e5\'f0\'ed\'f3\'f2\'fc true, \'e5\'f1\'eb\'e8 \'ea\'e0\'e6\'e4\'fb\'e9 \'f1\'e8\'ec\'e2\'ee\'eb \'e2 \'f1\'f2\'f0\'ee\'ea\'e5 \'e2\'f1\'f2\'f0\'e5\'f7\'e0\'e5\'f2\'f1\'ff \'f2\'ee\'eb\'fc\'ea\'ee 1 \'f0\'e0\'e7, \'e8\'ed\'e0\'f7\'e5 \'e4\'ee\'eb\'e6\'ed\'e0 \'e2\'e5\'f0\'ed\'f3\'f2\'fc false. \'cd\'e0\'ef\'e8\'f1\'e0\'f2\'fc \'f2\'e5\'f1\'f2\'fb \'e4\'eb\'ff \'ea\'ee\'e4\'e0\f1\lang1033  \par
+\f0\lang1049 def unique_characters(input_string):\par
+    return len(set(input_string)) == len(input_string)\par
+\b\'d2\'e5\'f1\'f2\'fb:\par
+\b0 def test_unique_characters():\par
+    assert unique_characters("abcdefg") == True\par
+    assert unique_characters("hello") == False\par
+    assert unique_characters("world") == True\par
+    assert unique_characters("aabbcc") == False\par
+    assert unique_characters("12345") == True\par
+    assert unique_characters("") == True\par
+\ul\b\'c7\'e0\'e4\'e0\'f7\'e0 3\ulnone\b0\par
+\'cd\'e0\'ef\'e8\'f1\'e0\'f2\'fc \'f4\'f3\'ed\'ea\'f6\'e8\'fe, \'ea\'ee\'f2\'ee\'f0\'e0\'ff \'ef\'f0\'e8\'ed\'e8\'ec\'e0\'e5\'f2 \'ef\'ee\'eb\'ee\'e6\'e8\'f2\'e5\'eb\'fc\'ed\'ee\'e5 \'f7\'e8\'f1\'eb\'ee \'e8 \'e2\'ee\'e7\'e2\'f0\'e0\'f9\'e0\'e5\'f2 \'ea\'ee\'eb\'e8\'f7\'e5\'f1\'f2\'e2\'ee \'e1\'e8\'f2 \'f0\'e0\'e2\'ed\'fb\'f5 1 \'e2 \'fd\'f2\'ee\'ec \'f7\'e8\'f1\'eb\'e5. \'cd\'e0\'ef\'e8\'f1\'e0\'f2\'fc \'f2\'e5\'f1\'f2\'fb \'e4\'eb\'ff \'ea\'ee\'e4\'e0\line def count_bits(num):\par
+    count = 0\par
+    while num:\par
+        count += num & 1\par
+        num >>= 1\par
+    return count\par
+\b\'d2\'e5\'f1\'f2\'fb:\b0\par
+def test_count_bits():\par
+    assert count_bits(0) == 0\par
+    assert count_bits(1) == 1\par
+    assert count_bits(2) == 1\par
+    assert count_bits(3) == 2\par
+    assert count_bits(8) == 1\par
+    assert count_bits(15) == 4\par
+    assert count_bits(255) == 8\par
+\ul\b  \'c7\'e0\'e4\'e0\'f7\'e0 4\ulnone\b0\par
+ \'cd\'e0\'ef\'e8\'f1\'e0\'f2\'fc \'f4\'f3\'ed\'ea\'f6\'e8\'fe, \'ea\'ee\'f2\'ee\'f0\'e0\'ff \'ef\'f0\'e8\'ed\'e8\'ec\'e0\'e5\'f2 \'ef\'ee\'eb\'ee\'e6\'e8\'f2\'e5\'eb\'fc\'ed\'ee\'e5 \'f7\'e8\'f1\'eb\'ee. \'d4\'f3\'ed\'ea\'f6\'e8\'ff \'e4\'ee\'eb\'e6\'ed\'e0 \'e2\'e5\'f0\'ed\'f3\'f2\'fc \'f2\'ee, \'f1\'ea\'ee\'eb\'fc\'ea\'ee \'f0\'e0\'e7 \'ed\'e5\'ee\'e1\'f5\'ee\'e4\'e8\'ec\'ee \'ef\'e5\'f0\'e5\'ec\'ed\'ee\'e6\'e0\'f2\'fc \'f6\'e8\'f4\'f0\'fb \'f7\'e8\'f1\'eb\'e0 \'e8\'eb\'e8 \'f0\'e5\'e7\'f3\'eb\'fc\'f2\'e0\'f2 \'ef\'e5\'f0\'e5\'ec\'ed\'ee\'e6\'e5\'ed\'e8\'ff, \'f7\'f2\'ee\'e1\'fb \'ef\'ee\'eb\'f3\'f7\'e8\'eb\'ee\'f1\'fc \'f7\'e8\'f1\'eb\'ee \'f1\'ee\'f1\'f2\'ee\'ff\'f9\'e5\'e5 \'e8\'e7 \'ee\'e4\'ed\'ee\'e9 \'f6\'e8\'f4\'f0\'fb. \'cd\'e0\'ef\'f0\'e8\'ec\'e5\'f0, \'e4\'eb\'ff \'e2\'f5\'ee\'e4\'ed\'ee\'e3\'ee \'f7\'e8\'f1\'eb\'e0: \f1\lang1033\'b7 39 \f0\lang1049\'f4\'f3\'ed\'ea\'f6\'e8\'ff \'e4\'ee\'eb\'e6\'ed\'e0 \'e2\'e5\'f0\'ed\'f3\'f2\'fc 3, \'f2\'e0\'ea \'ea\'e0\'ea 39=27 => 27=14 => 14=4 \f1\lang1033\'b7 4 \f0\lang1049\'f4\'f3\'ed\'ea\'f6\'e8\'ff \'e4\'ee\'eb\'e6\'ed\'e0 \'e2\'e5\'f0\'ed\'f3\'f2\'fc 0, \'f2\'e0\'ea \'ea\'e0\'ea \'f7\'e8\'f1\'eb\'ee \'f3\'e6\'e5 \'f1\'ee\'f1\'f2\'ee\'e8\'f2 \'e8\'e7 \'ee\'e4\'ed\'ee\'e9 \'f6\'e8\'f4\'f0\'fb \f1\lang1033\'b7 999 \f0\lang1049\'f4\'f3\'ed\'ea\'f6\'e8\'ff \'e4\'ee\'eb\'e6\'ed\'e0 \'e2\'e5\'f0\'ed\'f3\'f2\'fc 4, \'f2\'e0\'ea \'ea\'e0\'ea 999=729 => 729=126 => 126=12 => 12=2. \'cd\'e0\'ef\'e8\'f1\'e0\'f2\'fc \'f2\'e5\'f1\'f2\'fb \'e4\'eb\'ff \'ea\'ee\'e4\'e0\par
+def magic(n):\par
+    if n < 10:\par
+        return 0\par
+    else:\par
+        count = 0\par
+        while n >= 10:\par
+            product = 1\par
+            while n > 0:\par
+                product *= n % 10\par
+                n = n // 10\par
+            n = product\par
+            count += 1\par
+        return count\par
+\b\'d2\'e5\'f1\'f2\'fb:\b0\par
+print(magic(39))  \par
+print(magic(4))   \par
+print(magic(999))  \par
+print(magic(12345))  \par
+\ul\b\'c7\'e0\'e4\'e0\'f7\'e0 5\ulnone\b0\par
+\'cd\'e0\'ef\'e8\'f1\'e0\'f2\'fc \'f4\'f3\'ed\'ea\'f6\'e8\'fe, \'ea\'ee\'f2\'ee\'f0\'e0\'ff \'ef\'f0\'e8\'ed\'e8\'ec\'e0\'e5\'f2 \'e4\'e2\'e0 \'f6\'e5\'eb\'ee\'f7\'e8\'f1\'eb\'e5\'ed\'ed\'fb\'f5 \'e2\'e5\'ea\'f2\'ee\'f0\'e0 \'ee\'e4\'e8\'ed\'e0\'ea\'ee\'e2\'ee\'e9 \'e4\'eb\'e8\'ed\'fb \'e8 \'e2\'ee\'e7\'e2\'f0\'e0\'f9\'e0\'e5\'f2 \'f1\'f0\'e5\'e4\'ed\'e5\'ea\'e2\'e0\'e4\'f0\'e0\'f2\'e8\'f7\'e5\'f1\'ea\'ee\'e5 \'ee\'f2\'ea\'eb\'ee\'ed\'e5\'ed\'e8\'e5 \'e4\'e2\'f3\'f5 \'e2\'e5\'ea\'f2\'ee\'f0\'ee\'e2. \'cd\'e0\'ef\'e8\'f1\'e0\'f2\'fc \'f2\'e5\'f1\'f2\'fb \'e4\'eb\'ff \'ea\'ee\'e4\'e0\par
+def mse(pred, true):\par
+    if len(pred) != len(true):\par
+        raise ValueError("Vectors must have the same length")\par
+    sum_of_squares = sum((p - t) ** 2 for p, t in zip(pred, true))\par
+    return (sum_of_squares / len(pred)) ** 0.5\par
+    \b\'d2\'e5\'f1\'f2\'fb:\par
+\b0 assert mse([1, 2, 3], [4, 5, 6]) == 3.0\par
+assert mse([0, 0, 0, 0, 0], [1, 1, 1, 1, 1]) == 1.0\par
+assert mse([5, 5, 5], [5, 5, 3]) == 1.0\par
+\ul\b\'c7\'e0\'e4\'e0\'f7\'e0 6\ulnone\b0\par
+\'cd\'e0\'ef\'e8\'f1\'e0\'f2\'fc \'f4\'f3\'ed\'ea\'f6\'e8\'fe, \'ef\'f0\'e8\'ed\'e8\'ec\'e0\'fe\'f9\'e0\'ff \'f6\'e5\'eb\'ee\'e5 \'ef\'ee\'eb\'ee\'e6\'e8\'f2\'e5\'eb\'fc\'ed\'ee\'e5 \'f7\'e8\'f1\'eb\'ee. \'d4\'f3\'ed\'ea\'f6\'e8\'ff \'e4\'ee\'eb\'e6\'ed\'e0 \'e2\'e5\'f0\'ed\'f3\'f2\'fc \'f1\'f2\'f0\'ee\'ea\'f3 \'e2\'e8\'e4\'e0 \ldblquote (n1p1)(n2p2)\'85(nkpk)\rdblquote  \'ef\'f0\'e5\'e4\'f1\'f2\'e0\'e2\'eb\'ff\'fe\'f9\'e0\'ff \'f0\'e0\'e7\'eb\'ee\'e6\'e5\'ed\'e8\'e5 \'f7\'e8\'f1\'eb\'e0 \'ed\'e0 \'ef\'f0\'ee\'f1\'f2\'fb\'e5 \'ec\'ed\'ee\'e6\'e8\'f2\'e5\'eb\'e8 (\'e5\'f1\'eb\'e8 pi == 1, \'f2\'ee \'e2\'fb\'e2\'ee\'e4\'e8\'f2\'fc \'f2\'ee\'eb\'fc\'ea\'ee ni). \'cd\'e0\'ef\'f0\'e8\'ec\'e5\'f0, \'e4\'eb\'ff \'f7\'e8\'f1\'eb\'e0 86240 \'f4\'f3\'ed\'ea\'f6\'e8\'ff \'e4\'ee\'eb\'e6\'ed\'e0 \'e2\'e5\'f0\'ed\'f3\'f2\'fc \ldblquote (25)(5)(7**2)(11)\rdblquote . \'cd\'e0\'ef\'e8\'f1\'e0\'f2\'fc \'f2\'e5\'f1\'f2\'fb \'e4\'eb\'ff \'ea\'ee\'e4\'e0\par
+     def prime_factorization(n):\par
+    result = ""\par
+    divisor = 2\par
+    while n > 1:\par
+        count = 0\par
+        while n % divisor == 0:\par
+            n //= divisor\par
+            count += 1\par
+        if count > 0:\par
+            result += "(" + str(divisor)\par
+            if count > 1:\par
+                result += "**" + str(count)\par
+            result += ")"\par
+        divisor += 1\par
+    return result\par
+\b\'d2\'e5\'f1\'f2\'fb:\line\b0 assert prime_factorization(86240) == "(2**5)(5)(7**2)(11)"\par
+assert prime_factorization(30) == "(2)(3)(5)"\par
+assert prime_factorization(1) == ""\par
+assert prime_factorization(13) == "(13)"\par
+\ul\b\'c7\'e0\'e4\'e0\'f7\'e0 7\ulnone\b0\par
+\'cd\'e0\'ef\'e8\'f1\'e0\'f2\'fc \'f4\'f3\'ed\'ea\'f6\'e8\'fe, \'ef\'f0\'e8\'ed\'e8\'ec\'e0\'fe\'f9\'e0\'ff \'f6\'e5\'eb\'ee\'e5 \'f7\'e8\'f1\'eb\'ee n, \'e7\'e0\'e4\'e0\'fe\'f9\'e5\'e5 \'ea\'ee\'eb\'e8\'f7\'e5\'f1\'f2\'e2\'ee \'ea\'f3\'e1\'e8\'ea\'ee\'e2. \'d4\'f3\'ed\'ea\'f6\'e8\'ff \'e4\'ee\'eb\'e6\'ed\'e0 \'ee\'ef\'f0\'e5\'e4\'e5\'eb\'e8\'f2\'fc, \'ec\'ee\'e6\'ed\'ee \'eb\'e8 \'e8\'e7 \'e4\'e0\'ed\'ed\'ee\'e3\'ee \'ea\'ee\'eb-\'e2\'e0 \'ea\'f3\'e1\'e8\'ea\'ee\'e2 \'ef\'ee\'f1\'f2\'f0\'ee\'e8\'f2\'fc \'ef\'e8\'f0\'e0\'ec\'e8\'e4\'f3, \'f2\'ee \'e5\'f1\'f2\'fc \'ec\'ee\'e6\'ed\'ee \'eb\'e8 \'ef\'f0\'e5\'e4\'f1\'f2\'e0\'e2\'e8\'f2\'fc \'f7\'e8\'f1\'eb\'ee n \'ea\'e0\'ea 1^2+2^2+3^2+\'85+k^2. \'c5\'f1\'eb\'e8 \'ec\'ee\'e6\'ed\'ee, \'f2\'ee \'f4\'f3\'ed\'ea\'f6\'e8\'ff \'e4\'ee\'eb\'e6\'ed\'e0 \'e2\'e5\'f0\'ed\'f3\'f2\'fc k, \'e8\'ed\'e0\'f7\'e5 \'f1\'f2\'f0\'ee\'ea\'f3 \ldblquote It is impossible\rdblquote . \'cd\'e0\'ef\'e8\'f1\'e0\'f2\'fc \'f2\'e5\'f1\'f2\'fb \'e4\'eb\'ff \'ea\'ee\'e4\'e0\par
+def pyramid(number):\par
+    sum = 0\par
+    k = 1\par
+    while sum < number:\par
+        sum += k ** 2\par
+        if sum > number:\par
+            return "It is impossible"\par
+        k += 1\par
+    return k   \par
+\b\'d2\'e5\'f1\'f2\'fb:\par
+\b0 print(pyramid(1)) \par
+print(pyramid(5))  \par
+print(pyramid(12))  \par
+print(pyramid(14))  \par
+\ul\b\'c7\'e0\'e4\'e0\'f7\'e0 8\ulnone\b0\par
+\'d4\'f3\'ed\'ea\'f6\'e8\'ff \'ef\'f0\'e8\'ed\'e8\'ec\'e0\'e5\'f2 \'ed\'e0 \'e2\'f5\'ee\'e4 \'ef\'ee\'eb\'ee\'e6\'e8\'f2\'e5\'eb\'fc\'ed\'ee\'e5 \'f7\'e8\'f1\'eb\'ee \'e8 \'ee\'ef\'f0\'e5\'e4\'e5\'eb\'ff\'e5\'f2 \'ff\'e2\'eb\'ff\'e5\'f2\'f1\'ff \'eb\'e8 \'ee\'ed\'ee \'f1\'e1\'e0\'eb\'e0\'ed\'f1\'e8\'f0\'ee\'e2\'e0\'ed\'ed\'fb\'ec, \'f2.\'e5. \'f1\'f3\'ec\'ec\'e0 \'f6\'e8\'f4\'f0 \'e4\'ee \'f1\'f0\'e5\'e4\'ed\'e8\'f5 \'f0\'e0\'e2\'ed\'e0 \'f1\'f3\'ec\'ec\'e5 \'f6\'e8\'f4\'f0 \'ef\'ee\'f1\'eb\'e5. \'d1\'f0\'e5\'e4\'ed\'e8\'ec\'e8 \'e2 \'f1\'eb\'f3\'f7\'e0\'e5 \'ed\'e5\'f7\'e5\'f2\'ed\'ee\'e3\'ee \'f7\'e8\'f1\'eb\'e0 \'f6\'e8\'f4\'f0 \'f1\'f7\'e8\'f2\'e0\'f2\'fc \'ee\'e4\'ed\'f3 \'f6\'e8\'f4\'f0\'f3, \'e2 \'f1\'eb\'f3\'f7\'e0\'e5 \'f7\'e5\'f2\'ed\'ee\'e3\'ee - \'e4\'e2\'e5 \'f1\'f0\'e5\'e4\'ed\'e8\'f5. \'cd\'e0\'ef\'e8\'f1\'e0\'f2\'fc \'f2\'e5\'f1\'f2\'fb \'e4\'eb\'ff \'ea\'ee\'e4\'e0\par
+def is_balanced_number(n):\par
+    digits = [int(d) for d in str(n)]\par
+    if len(digits) % 2 == 0:\par
+        left_sum = sum(digits[:len(digits)//2])\par
+        right_sum = sum(digits[len(digits)//2:])\par
+    else:\par
+        left_sum = sum(digits[:len(digits)//2])\par
+        right_sum = sum(digits[len(digits)//2+1:])\par
+    return left_sum == right_sum\par
+\b\'d2\'e5\'f1\'f2\'fb:\par
+\b0 def test_is_balanced_number():\par
+    assert is_balanced_number(121) == True\par
+    assert is_balanced_number(12321) == True\par
+    assert is_balanced_number(12345) == False\par
+    assert is_balanced_number(1234567) == True\par
+    assert is_balanced_number(111222333) == False\par
+test_is_balanced_number()\par
+}
+ 

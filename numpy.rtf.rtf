@@ -1,0 +1,257 @@
+{\rtf1\ansi\ansicpg1251\deff0\nouicompat\deflang1049{\fonttbl{\f0\fnil\fcharset204 Calibri;}{\f1\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sa160\sl259\slmult0\b\f0\fs22\'c8\'ec\'ef\'ee\'f0\'f2 \'e1\'e8\'e1\'eb\'e8\'ee\'f2\'e5\'ea\b0\par
+\f1\lang9\par
+import numpy as np\par
+import matplotlib.pyplot as plt\par
+     \par
+\ul\b\f0\lang1049\'c7\'e0\'e4\'e0\'f7\'e0 1\ulnone\b0\par
+\'c4\'e0\'ed \'ed\'e0\'e1\'ee\'f0 \'e8\'e7 p \'ec\'e0\'f2\'f0\'e8\'f6 \'f0\'e0\'e7\'ec\'e5\'f0\'ed\'ee\'f1\'f2\'fc\'fe (n,n)  \'e8 p \'e2\'e5\'ea\'f2\'ee\'f0\'ee\'e2 \'f0\'e0\'e7\'ec\'e5\'f0\'ed\'ee\'f1\'f2\'fc\'fe (n,1), \'ed\'e0\'e9\'f2\'e8 \'f1\'f3\'ec\'ec\'f3 \'ef\'f0\'ee\'e8\'e7\'e2\'e5\'e4\'e5\'ed\'e8\'e9 \'ec\'e0\'f2\'f0\'e8\'f6 \'ed\'e0 \'e2\'e5\'ea\'f2\'ee\'f0\'fb. \'cd\'e0\'ef\'e8\'f1\'e0\'f2\'fc \'f2\'e5\'f1\'f2\'fb \'e4\'eb\'ff \'ea\'ee\'e4\'e0\par
+\f1\lang9 def sum_prod(X, V):\par
+    '''\par
+    X - \f0\lang1049\'ec\'e0\'f2\'f0\'e8\'f6\'fb (n, n)\par
+\f1\lang9     V - \f0\lang1049\'e2\'e5\'ea\'f2\'ee\'f0\'fb (n, 1)\par
+\f1\lang9     \f0\lang1049\'c3\'e0\'f0\'e0\'ed\'f2\'e8\'f0\'f3\'e5\'f2\'f1\'ff, \'f7\'f2\'ee len(X) == len(V)\par
+\f1\lang9     '''\par
+    def sum_matrix_vector_products(matrices, vectors):\par
+    result = 0\par
+    for matrix, vector in zip(matrices, vectors):\par
+        result += np.dot(matrix, vector).sum()\par
+    return result\par
+\b\f0\lang1049\'d2\'e5\'f1\'f2\'fb:\b0\par
+\f1\lang9 def test_sum_matrix_vector_products():\par
+    matrix1 = np.array([[1, 2], [3, 4]])\par
+    matrix2 = np.array([[5, 6], [7, 8]])\par
+    vector1 = np.array([[1], [2]])\par
+    vector2 = np.array([[3], [4]])\par
+    \par
+    assert sum_matrix_vector_products([matrix1, matrix2], [vector1, vector2]) == 70\par
+\par
+    matrix3 = np.array([[2, 3], [4, 5]])\par
+    vector3 = np.array([[2], [3]])\par
+\par
+    assert sum_matrix_vector_products([matrix1, matrix2, matrix3], [vector1, vector2, vector3]) == 112\par
+\par
+    print("\f0\lang1049\'c2\'f1\'e5 \'f2\'e5\'f1\'f2\'fb \'ef\'f0\'ee\'e9\'e4\'e5\'ed\'fb \'f3\'f1\'ef\'e5\'f8\'ed\'ee!")\par
+\f1\lang9\par
+     test_sum_matrix_vector_products()\par
+     \par
+\ul\b\f0\lang1049\'c7\'e0\'e4\'e0\'f7\'e0 2\ulnone\b0\par
+\'c4\'e0\'ed\'e0 \'ec\'e0\'f2\'f0\'e8\'f6\'e0 M, \'ed\'e0\'ef\'e8\'f8\'e8\'f2\'e5 \'f4\'f3\'ed\'ea\'f6\'e8\'fe, \'ea\'ee\'f2\'ee\'f0\'e0\'ff \'e1\'e8\'ed\'e0\'f0\'e8\'e7\'f3\'e5\'f2 \'ec\'e0\'f2\'f0\'e8\'f6\'f3 \'ef\'ee \'ed\'e5\'ea\'ee\'f2\'ee\'f0\'ee\'ec\'f3 threshold (\'f2\'ee \'e5\'f1\'f2\'fc, \'e2\'f1\'e5 \'e7\'ed\'e0\'f7\'e5\'ed\'e8\'ff \'e1\'ee\'eb\'fc\'f8\'e8\'e5 threshold \'f1\'f2\'e0\'ed\'ee\'e2\'ff\'f2\'f1\'ff \'f0\'e0\'e2\'ed\'fb\'ec\'e8 1, \'e8\'ed\'e0\'f7\'e5 0). \'cd\'e0\'ef\'e8\'f8\'e8\'f2\'e5 \'f2\'e5\'f1\'f2\'fb \'e4\'eb\'ff \'ea\'ee\'e4\'e0\par
+\f1\lang9\par
+def binarize(M, threshold=0.5):\par
+\par
+def binarize_matrix(matrix, threshold):\par
+    binary_matrix = np.where(matrix > threshold, 1, 0)\par
+    return binary_matrix\par
+\par
+\b\f0\lang1049\'d2\'e5\'f1\'f2\'fb:\b0\par
+\f1\lang9 def test_binarize_matrix():\par
+    matrix = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])\par
+    threshold = 4\par
+    expected_result = np.array([[0, 0, 0], [1, 1, 1], [1, 1, 1]])\par
+    \par
+    assert np.array_equal(binarize_matrix(matrix, threshold), expected_result)\par
+\par
+    matrix2 = np.array([[0.5, 1.5], [2.5, 3.5]])\par
+    threshold2 = 2\par
+    expected_result2 = np.array([[0, 0], [1, 1]])\par
+\par
+    assert np.array_equal(binarize_matrix(matrix2, threshold2), expected_result2)\par
+\par
+    print("\f0\lang1049\'c2\'f1\'e5 \'f2\'e5\'f1\'f2\'fb \'ef\'f0\'ee\'e9\'e4\'e5\'ed\'fb \'f3\'f1\'ef\'e5\'f8\'ed\'ee!")\par
+\f1\lang9\par
+test_binarize_matrix()\par
+    pass\par
+     \par
+\ul\b\f0\lang1049\'c7\'e0\'e4\'e0\'f7\'e0 3\ulnone\b0\par
+\'cd\'e0\'ef\'e8\'f8\'e8\'f2\'e5 \'f4\'f3\'ed\'ea\'f6\'e8\'fe, \'ea\'ee\'f2\'ee\'f0\'e0\'ff \'e2\'ee\'e7\'e2\'f0\'e0\'f9\'e0\'e5\'f2 \'f3\'ed\'e8\'ea\'e0\'eb\'fc\'ed\'fb\'e5 \'fd\'eb\'e5\'ec\'e5\'ed\'f2\'fb \'e8\'e7 \'ea\'e0\'e6\'e4\'ee\'e9 \'f1\'f2\'f0\'ee\'ea\'e8 \'ec\'e0\'f2\'f0\'e8\'f6\'fb. \'cd\'e0\'ef\'e8\'f8\'e8\'f2\'e5 \'f2\'e0\'ea\'f3\'fe \'e6\'e5 \'f4\'f3\'ed\'ea\'f6\'e8\'fe, \'ed\'ee \'e4\'eb\'ff \'f1\'f2\'ee\'eb\'e1\'f6\'ee\'e2. \'cd\'e0\'ef\'e8\'f8\'e8\'f2\'e5 \'f2\'e5\'f1\'f2\'fb \'e4\'eb\'ff \'ea\'ee\'e4\'e0\par
+\f1\lang9\par
+def unique_rows(mat):\par
+    def unique_columns(mat):\par
+    def unique_elements_in_rows(matrix):\par
+    unique_elements = [np.unique(row) for row in matrix]\par
+    return unique_elements\par
+\par
+def unique_elements_in_columns(matrix):\par
+    unique_elements = [np.unique(column) for column in matrix.T]\par
+    return unique_elements\par
+\par
+\b\f0\lang1049\'d2\'e5\'f1\'f2\'fb:\b0\par
+\f1\lang9 def test_unique_elements_in_rows():\par
+    matrix = np.array([[1, 2, 3], [2, 3, 4], [3, 4, 5]])\par
+    expected_result = [np.array([1, 2, 3]), np.array([2, 3, 4]), np.array([3, 4, 5])]\par
+    \par
+    assert all(np.array_equal(row, expected_row) for row, expected_row in zip(unique_elements_in_rows(matrix), expected_result))\par
+\par
+def test_unique_elements_in_columns():\par
+    matrix = np.array([[1, 2, 3], [2, 3, 4], [3, 4, 5]])\par
+    expected_result = [np.array([1, 2, 3]), np.array([2, 3, 4]), np.array([3, 4, 5])]\par
+    \par
+    assert all(np.array_equal(column, expected_column) for column, expected_column in zip(unique_elements_in_columns(matrix), expected_result))\par
+\par
+    print("\f0\lang1049\'c2\'f1\'e5 \'f2\'e5\'f1\'f2\'fb \'ef\'f0\'ee\'e9\'e4\'e5\'ed\'fb \'f3\'f1\'ef\'e5\'f8\'ed\'ee!")\par
+\f1\lang9\par
+test_unique_elements_in_rows()\par
+test_unique_elements_in_columns()   \par
+     \par
+\ul\b\f0\lang1049\'c7\'e0\'e4\'e0\'f7\'e0 4\ulnone\b0\par
+\f1\lang9  \f0\lang1049\'cd\'e0\'ef\'e8\'f8\'e8\'f2\'e5 \'f4\'f3\'ed\'ea\'f6\'e8\'fe, \'ea\'ee\'f2\'ee\'f0\'e0\'ff \'e7\'e0\'ef\'ee\'eb\'ed\'ff\'e5\'f2 \'ec\'e0\'f2\'f0\'e8\'f6\'f3 \'f1 \'f0\'e0\'e7\'ec\'e5\'f0\'e0\'ec\'e8 (m,n)\par
+\f1\lang9  \f0\lang1049\'f1\'eb\'f3\'f7\'e0\'e9\'ed\'fb\'ec\'e8 \'f7\'e8\'f1\'eb\'e0\'ec\'e8, \'f0\'e0\'f1\'ef\'f0\'e5\'e4\'e5\'eb\'e5\'ed\'ed\'fb\'ec\'e8 \'ef\'ee \'ed\'ee\'f0\'ec\'e0\'eb\'fc\'ed\'ee\'ec\'f3 \'e7\'e0\'ea\'ee\'ed\'f3. \'c7\'e0\'f2\'e5\'ec \'f1\'f7\'e8\'f2\'e0\'e5\'f2 \'ec\'e0\'f2. \'ee\'e6\'e8\'e4\'e0\'ed\'e8\'e5 \'e8 \'e4\'e8\'f1\'ef\'e5\'f0\'f1\'e8\'fe \'e4\'eb\'ff \'ea\'e0\'e6\'e4\'ee\'e3\'ee \'e8\'e7 \'f1\'f2\'ee\'eb\'e1\'f6\'ee\'e2 \'e8 \'f1\'f2\'f0\'ee\'ea, \'e0 \'f2\'e0\'ea\'e6\'e5 \'f1\'f2\'f0\'ee\'e8\'f2 \'e4\'eb\'ff \'ea\'e0\'e6\'e4\'ee\'e9 \'f1\'f2\'f0\'ee\'ea\'e8 \'e8 \'f1\'f2\'ee\'eb\'e1\'f6\'e0 \'e3\'e8\'f1\'f2\'ee\'e3\'f0\'e0\'ec\'ec\'f3 \'e7\'ed\'e0\'f7\'e5\'ed\'e8\'e9 (\'e8\'f1\'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'f2\'fc \'f4\'f3\'ed\'ea\'f6\'e8\'fe hist \'e8\'e7 \'ec\'ee\'e4\'f3\'eb\'ff matplotlib.plot)\par
+\f1\lang9\par
+def generate_normal_matrix_and_plot_statistics(m, n):\par
+\b      \f0\lang1049\'c3\'e5\'ed\'e5\'f0\'e0\'f6\'e8\'ff \'ec\'e0\'f2\'f0\'e8\'f6\'fb \'f1 \'f1\'eb\'f3\'f7\'e0\'e9\'ed\'fb\'ec\'e8 \'f7\'e8\'f1\'eb\'e0\'ec\'e8\par
+\b0\f1\lang9     matrix = np.random.randn(m, n)\par
+    \par
+\b      \f0\lang1049\'c2\'fb\'f7\'e8\'f1\'eb\'e5\'ed\'e8\'e5 \'ec\'e0\'f2. \'ee\'e6\'e8\'e4\'e0\'ed\'e8\'ff \'e8 \'e4\'e8\'f1\'ef\'e5\'f0\'f1\'e8\'e8 \'e4\'eb\'ff \'f1\'f2\'f0\'ee\'ea \'e8 \'f1\'f2\'ee\'eb\'e1\'f6\'ee\'e2\par
+\b0\f1\lang9     row_means = np.mean(matrix, axis=1)\par
+    row_variances = np.var(matrix, axis=1)\par
+    \par
+    column_means = np.mean(matrix, axis=0)\par
+    column_variances = np.var(matrix, axis=0)\par
+    \par
+ \b    \f0\lang1049\'cf\'ee\'f1\'f2\'f0\'ee\'e5\'ed\'e8\'e5 \'e3\'e8\'f1\'f2\'ee\'e3\'f0\'e0\'ec\'ec \'e7\'ed\'e0\'f7\'e5\'ed\'e8\'e9 \'e4\'eb\'ff \'ea\'e0\'e6\'e4\'ee\'e9 \'f1\'f2\'f0\'ee\'ea\'e8\b0\par
+\f1\lang9     for i in range(m):\par
+        plt.hist(matrix[i], bins=10)\par
+        plt.title(f"Histogram of values for row \{i\}")\par
+        plt.show()\par
+    \b\par
+    \f0\lang1049\'cf\'ee\'f1\'f2\'f0\'ee\'e5\'ed\'e8\'e5 \'e3\'e8\'f1\'f2\'ee\'e3\'f0\'e0\'ec\'ec \'e7\'ed\'e0\'f7\'e5\'ed\'e8\'e9 \'e4\'eb\'ff \'ea\'e0\'e6\'e4\'ee\'e3\'ee \'f1\'f2\'ee\'eb\'e1\'f6\'e0\par
+\b0\f1\lang9     for j in range(n):\par
+        plt.hist(matrix[:,j], bins=10)\par
+        plt.title(f"Histogram of values for column \{j\}")\par
+        plt.show()\par
+    \par
+    return row_means, row_variances, column_means, column_variances\par
+\par
+\b\f0\lang1049\'cf\'f0\'e8\'ec\'e5\'f0 \'e8\'f1\'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'ed\'e8\'ff \'f4\'f3\'ed\'ea\'f6\'e8\'e8\b0\par
+\f1\lang9 m = 5  # \f0\lang1049\'ea\'ee\'eb\'e8\'f7\'e5\'f1\'f2\'e2\'ee \'f1\'f2\'f0\'ee\'ea\par
+\f1\lang9 n = 3  # \f0\lang1049\'ea\'ee\'eb\'e8\'f7\'e5\'f1\'f2\'e2\'ee \'f1\'f2\'ee\'eb\'e1\'f6\'ee\'e2\par
+\f1\lang9\par
+row_means, row_variances, column_means, column_variances = generate_normal_matrix_and_plot_statistics(m, n)\par
+\par
+print("\f0\lang1049\'cc\'e0\'f2. \'ee\'e6\'e8\'e4\'e0\'ed\'e8\'e5 \'e4\'eb\'ff \'ea\'e0\'e6\'e4\'ee\'e9 \'f1\'f2\'f0\'ee\'ea\'e8:")\par
+\f1\lang9 print(row_means)\par
+print("\f0\lang1049\'c4\'e8\'f1\'ef\'e5\'f0\'f1\'e8\'ff \'e4\'eb\'ff \'ea\'e0\'e6\'e4\'ee\'e9 \'f1\'f2\'f0\'ee\'ea\'e8:")\par
+\f1\lang9 print(row_variances)\par
+\par
+print("\f0\lang1049\'cc\'e0\'f2. \'ee\'e6\'e8\'e4\'e0\'ed\'e8\'e5 \'e4\'eb\'ff \'ea\'e0\'e6\'e4\'ee\'e3\'ee \'f1\'f2\'ee\'eb\'e1\'f6\'e0:")\par
+\f1\lang9 print(column_means)\par
+print("\f0\lang1049\'c4\'e8\'f1\'ef\'e5\'f0\'f1\'e8\'ff \'e4\'eb\'ff \'ea\'e0\'e6\'e4\'ee\'e3\'ee \'f1\'f2\'ee\'eb\'e1\'f6\'e0:")\par
+\f1\lang9 print(column_variances)     \par
+\ul\b\f0\lang1049\'c7\'e0\'e4\'e0\'f7\'e0 5\ulnone\b0\par
+\'cd\'e0\'ef\'e8\'f8\'e8\'f2\'e5 \'f4\'f3\'ed\'ea\'f6\'e8\'fe, \'ea\'ee\'f2\'ee\'f0\'e0\'ff \'e7\'e0\'ef\'ee\'eb\'ed\'ff\'e5\'f2 \'ec\'e0\'f2\'f0\'e8\'f6\'f3 (m,n) \'e2 \'f8\'e0\'f5\'ec\'e0\'f2\'ed\'ee\'ec \'ef\'ee\'f0\'ff\'e4\'ea\'e5 \'e7\'e0\'e4\'e0\'ed\'ed\'fb\'ec\'e8 \'f7\'e8\'f1\'eb\'e0\'ec\'e8 a \'e8 b.  \'cd\'e0\'ef\'e8\'f8\'e8\'f2\'e5 \'f2\'e5\'f1\'f2\'fb \'e4\'eb\'ff \'ea\'ee\'e4\'e0\par
+\f1\lang9 def chess(m, n, a, b):\par
+    matrix = [[0 for _ in range(n)] for _ in range(m)]\par
+    for i in range(m):\par
+        for j in range(n):\par
+            if (i + j) % 2 == 0:\par
+                matrix[i][j] = a\par
+            else:\par
+                matrix[i][j] = b\par
+    return matrix \par
+\b\f0\lang1049\'d2\'e5\'f1\'f2\'fb:\par
+\f1\lang9  \b0 import unittest\par
+class TestChessMatrix(unittest.TestCase):\par
+    def test_chess_3x3(self):\par
+        self.assertEqual(chess(3, 3, 0, 1), [[0, 1, 0], [1, 0, 1], [0, 1, 0]])\par
+    def test_chess_2x4(self):\par
+        self.assertEqual(chess(2, 4, 5, 6), [[5, 6, 5, 6], [6, 5, 6, 5]])\par
+if __name__ == '__main__':\par
+    unittest.main()\b     \b0\par
+\ul\b\f0\lang1049\'c7\'e0\'e4\'e0\'f7\'e0 6\ulnone\b0\par
+\'cd\'e0\'ef\'e8\'f8\'e8\'f2\'e5 \'f4\'f3\'ed\'ea\'f6\'e8\'fe, \'ea\'ee\'f2\'ee\'f0\'e0\'ff \'ee\'f2\'f0\'e8\'f1\'ee\'e2\'fb\'e2\'e0\'e5\'f2 \'ef\'f0\'ff\'ec\'ee\'f3\'e3\'ee\'eb\'fc\'ed\'e8\'ea \'f1 \'e7\'e0\'e4\'e0\'ed\'ed\'fb\'ec\'e8 \'f0\'e0\'e7\'ec\'e5\'f0\'e0\'ec\'e8 (a, b) \'ed\'e0 \'e8\'e7\'ee\'e1\'f0\'e0\'e6\'e5\'ed\'e8\'e8 \'f0\'e0\'e7\'ec\'e5\'f0\'e0 (m, n), \'f6\'e2\'e5\'f2 \'f4\'ee\'ed\'e0 \'e7\'e0\'e4\'e0\'e9\'f2\'e5 \'e2 \'f1\'f5\'e5\'ec\'e5 RGB, \'ea\'e0\'ea \'e8 \'f6\'e2\'e5\'f2 \'ef\'f0\'ff\'ec\'ee\'f3\'e3\'ee\'eb\'fc\'ed\'e8\'ea\'e0. \'d6\'e2\'e5\'f2\'e0 \'f2\'e0\'ea\'e6\'e5 \'e4\'ee\'eb\'e6\'ed\'fb \'e1\'fb\'f2\'fc \'ef\'e0\'f0\'e0\'ec\'e5\'f2\'f0\'e0\'ec\'e8 \'f4\'f3\'ed\'ea\'f6\'e8\'e8. \'cd\'e0\'ef\'e8\'f8\'e8\'f2\'e5 \'e0\'ed\'e0\'eb\'ee\'e3\'e8\'f7\'ed\'f3\'fe \'f4\'f3\'ed\'ea\'f6\'e8\'fe \'ed\'ee \'e4\'eb\'ff \'ee\'e2\'e0\'eb\'e0 \'f1 \'ef\'ee\'eb\'f3\'ee\'f1\'ff\'ec\'e8 a \'e8 b. \'cd\'e0\'ef\'e8\'f8\'e8\'f2\'e5 \'f2\'e5\'f1\'f2\'fb \'e4\'eb\'ff \'ea\'ee\'e4\'e0. \'cf\'f0\'e8\'ec\'e5\'f7\'e0\'ed\'e8\'e5: \'f3\'f0\'e0\'e2\'ed\'e5\'ed\'e8\'e5 \'fd\'eb\'eb\'e8\'ef\'f1\'e0 (\'e3\'f0\'e0\'ed\'e8\'f6\'fb \'ee\'e2\'e0\'eb\'e0) \'ec\'ee\'e6\'ed\'ee \'e7\'e0\'ef\'e8\'f1\'e0\'f2\'fc \'ea\'e0\'ea:\par
+\f1\lang9 def draw_rectangle(a, b, m, n, rectangle_color, background_color):\par
+def draw_rectangle(image, m, n, a, b, bg_color=(255, 255, 255), rect_color=(0, 0, 0)):\par
+    image[:, :] = bg_color\par
+    start_x = (m - a) // 2\par
+    start_y = (n - b) // 2\par
+    end_x = start_x + a\par
+    end_y = start_y + b\par
+    image[start_x:end_x, start_y:end_y] = rect_color\par
+\par
+def draw_oval(image, m, n, a, b, bg_color=(255, 255, 255), oval_color=(0, 0, 0)):\par
+    image[:, :] = bg_color\par
+    center_x = m // 2\par
+    center_y = n // 2\par
+    for i in range(m):\par
+        for j in range(n):\par
+            if ((i - center_x) / a)**2 + ((j - center_y) / b)**2 <= 1:\par
+                image[i, j] = oval_color\par
+\par
+def test_draw_shapes():\par
+    m = 300\par
+    n = 400\par
+    a = 100\par
+    b = 150\par
+    \par
+    \b  \f0\lang1049\'d1\'ee\'e7\'e4\'e0\'ed\'e8\'e5 \'e8\'e7\'ee\'e1\'f0\'e0\'e6\'e5\'ed\'e8\'ff\b0\par
+\f1\lang9     image = np.zeros((m, n, 3), dtype=np.uint8)\par
+    \par
+\b     \f0\lang1049\'ce\'f2\'f0\'e8\'f1\'ee\'e2\'ea\'e0 \'ef\'f0\'ff\'ec\'ee\'f3\'e3\'ee\'eb\'fc\'ed\'e8\'ea\'e0\par
+\b0\f1\lang9     draw_rectangle(image, m, n, a, b, bg_color=(255, 255, 255), rect_color=(0, 0, 255))\par
+    plt.imshow(image)\par
+    plt.title("Rectangle")\par
+    plt.show()\par
+    \par
+\b     \f0\lang1049\'ce\'f2\'f0\'e8\'f1\'ee\'e2\'ea\'e0 \'ee\'e2\'e0\'eb\'e0\b0\par
+\f1\lang9     draw_oval(image, m, n, a, b, bg_color=(255, 255, 255), oval_color=(255, 0, 0))\par
+    plt.imshow(image)\par
+    plt.title("Oval")\par
+    plt.show()\par
+\par
+\b\f0\lang1049\'c7\'e0\'ef\'f3\'f1\'ea \'f2\'e5\'f1\'f2\'ee\'e2\b0\par
+\f1\lang9 test_draw_shapes()     \par
+\ul\b\f0\lang1049\'c7\'e0\'e4\'e0\'f7\'e0 7\ulnone\b0\par
+\f1\lang9  \f0\lang1049\'c4\'e0\'ed \'ed\'e5\'ea\'e8\'e9 \'e2\'f0\'e5\'ec\'e5\'ed\'ed\'ee\'e9 \'f0\'ff\'e4. \'c4\'eb\'ff \'e4\'e0\'ed\'ed\'ee\'e3\'ee \'f0\'ff\'e4\'e0 \'ed\'f3\'e6\'ed\'ee \'ed\'e0\'e9\'f2\'e8 \'e5\'e3\'ee: \'ec\'e0\'f2\'e5\'ec\'e0\'f2\'e8\'f7\'e5\'f1\'ea\'ee\'e5 \'ee\'e6\'e8\'e4\'e0\'ed\'e8\'e5, \'e4\'e8\'f1\'ef\'e5\'f0\'f1\'e8\'fe, \'d1\'ca\'ce, \'ed\'e0\'e9\'f2\'e8 \'e2\'f1\'e5 \'eb\'ee\'ea\'e0\'eb\'fc\'ed\'fb\'e5 \'ec\'e0\'ea\'f1\'e8\'ec\'f3\'ec\'fb \'e8 \'ec\'e8\'ed\'e8\'ec\'f3\'ec\'fb (\'eb\'ee\'ea\'e0\'eb\'fc\'ed\'fb\'e9 \'ec\'e0\'ea\'f1\'e8\'ec\'f3\'ec - \'fd\'f2\'ee \'f2\'ee\'f7\'ea\'e0, \'ea\'ee\'f2\'ee\'f0\'e0\'ff \'e1\'ee\'eb\'fc\'f8\'e5 \'f1\'e2\'ee\'e8\'f5 \'f1\'ee\'f1\'e5\'e4\'ed\'e8\'f5 \'f2\'ee\'f7\'e5\'ea, \'e0 \'eb\'ee\'ea\'e0\'eb\'fc\'ed\'fb\'e9 \'ec\'e8\'ed\'e8\'ec\'f3\'ec - \'fd\'f2\'ee \'f2\'ee\'f7\'ea\'e0, \'ea\'ee\'f2\'ee\'f0\'e0\'ff \'ec\'e5\'ed\'fc\'f8\'e5 \'f1\'e2\'ee\'e8\'f5 \'f1\'ee\'f1\'e5\'e4\'e5\'e9), \'e0 \'f2\'e0\'ea\'e6\'e5 \'e2\'fb\'f7\'e8\'f1\'eb\'e8\'f2\'fc \'e4\'eb\'ff \'e4\'e0\'ed\'ed\'ee\'e3\'ee \'f0\'ff\'e4\'e0 \'e4\'f0\'f3\'e3\'ee\'e9 \'f0\'ff\'e4, \'ef\'ee\'eb\'f3\'f7\'e0\'e5\'ec\'fb\'e9 \'ec\'e5\'f2\'ee\'e4\'ee\'ec \'f1\'ea\'ee\'eb\'fc\'e7\'ff\'f9\'e5\'e3\'ee \'f1\'f0\'e5\'e4\'ed\'e5\'e3\'ee \'f1 \'f0\'e0\'e7\'ec\'e5\'f0\'ee\'ec \'ee\'ea\'ed\'e0 p.\par
+\'cf\'f0\'e8\'ec\'e5\'f7\'e0\'ed\'e8\'e5: \'ec\'e5\'f2\'ee\'e4 \'f1\'ea\'ee\'eb\'fc\'e7\'ff\'f9\'e5\'e3\'ee \'f1\'f0\'e5\'e4\'ed\'e5\'e3\'ee \'ef\'ee\'e4\'f0\'e0\'e7\'f3\'ec\'e5\'e2\'e0\'e5\'f2 \'ed\'e0\'f5\'ee\'e6\'e4\'e5\'ed\'e8\'e5 \'f1\'f0\'e5\'e4\'ed\'e5\'e3\'ee \'e8\'e7 \'ef\'ee\'e4\'ec\'ed\'ee\'e6\'e5\'f2\'f1\'e2\'e0 \'f0\'ff\'e4\'e0 \'f0\'e0\'e7\'ec\'e5\'f0\'ee\'ec \par
+\b\f1\lang9\par
+ \f0\lang1049\'c2\'e0\'f8 \'e2\'f0\'e5\'ec\'e5\'ed\'ed\'ee\'e9 \'f0\'ff\'e4 \'e4\'e0\'ed\'ed\'fb\'f5\par
+\b0\f1\lang9 time_series = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3]\par
+\par
+\b\f0\lang1049\'cc\'e0\'f2\'e5\'ec\'e0\'f2\'e8\'f7\'e5\'f1\'ea\'ee\'e5 \'ee\'e6\'e8\'e4\'e0\'ed\'e8\'e5\b0\par
+\f1\lang9 mean = np.mean(time_series)\par
+\par
+\b\f0\lang1049\'c4\'e8\'f1\'ef\'e5\'f0\'f1\'e8\'ff\b0\par
+\f1\lang9 variance = np.var(time_series)\par
+\par
+\b\f0\lang1049\'d1\'f2\'e0\'ed\'e4\'e0\'f0\'f2\'ed\'ee\'e5 \'ee\'f2\'ea\'eb\'ee\'ed\'e5\'ed\'e8\'e5 (\'d1\'ca\'ce)\b0\par
+\f1\lang9 std_deviation = np.sqrt(variance)\par
+\par
+\b\f0\lang1049\'cb\'ee\'ea\'e0\'eb\'fc\'ed\'fb\'e5 \'ec\'e0\'ea\'f1\'e8\'ec\'f3\'ec\'fb \'e8 \'ec\'e8\'ed\'e8\'ec\'f3\'ec\'fb\b0\par
+\f1\lang9 local_max = [time_series[i] for i in range(1, len(time_series)-1) if time_series[i] > time_series[i-1] and time_series[i] > time_series[i+1]]\par
+local_min = [time_series[i] for i in range(1, len(time_series)-1) if time_series[i] < time_series[i-1] and time_series[i] < time_series[i+1]]\par
+\par
+\b\f0\lang1049\'d1\'ea\'ee\'eb\'fc\'e7\'ff\'f9\'e5\'e5 \'f1\'f0\'e5\'e4\'ed\'e5\'e5\b0\par
+\f1\lang9 def sliding_mean(data, window_size):\par
+    return [np.mean(data[i:i+window_size]) for i in range(len(data) - window_size + 1]\par
+\par
+\b\f0\lang1049\'d0\'e0\'e7\'ec\'e5\'f0 \'ee\'ea\'ed\'e0 \'e4\'eb\'ff \'f1\'ea\'ee\'eb\'fc\'e7\'ff\'f9\'e5\'e3\'ee \'f1\'f0\'e5\'e4\'ed\'e5\'e3\'ee\b0\par
+\f1\lang9 p = 3\par
+smoothed_series = sliding_mean(time_series, p)\par
+\par
+\b\f0\lang1049\'c2\'fb\'e2\'ee\'e4 \'ef\'ee\'eb\'f3\'f7\'e5\'ed\'ed\'fb\'f5 \'f0\'e5\'e7\'f3\'eb\'fc\'f2\'e0\'f2\'ee\'e2\b0\par
+\f1\lang9 print("\f0\lang1049\'cc\'e0\'f2\'e5\'ec\'e0\'f2\'e8\'f7\'e5\'f1\'ea\'ee\'e5 \'ee\'e6\'e8\'e4\'e0\'ed\'e8\'e5:", mean)\par
+\f1\lang9 print("\f0\lang1049\'c4\'e8\'f1\'ef\'e5\'f0\'f1\'e8\'ff:", variance)\par
+\f1\lang9 print("\f0\lang1049\'d1\'ca\'ce:", std_deviation)\par
+\f1\lang9 print("\f0\lang1049\'cb\'ee\'ea\'e0\'eb\'fc\'ed\'fb\'e5 \'ec\'e0\'ea\'f1\'e8\'ec\'f3\'ec\'fb:", local_max)\par
+\f1\lang9 print("\f0\lang1049\'cb\'ee\'ea\'e0\'eb\'fc\'ed\'fb\'e5 \'ec\'e8\'ed\'e8\'ec\'f3\'ec\'fb:", local_min)\par
+\f1\lang9 print("\f0\lang1049\'d1\'ea\'ee\'eb\'fc\'e7\'ff\'f9\'e5\'e5 \'f1\'f0\'e5\'e4\'ed\'e5\'e5 \'f1 \'ee\'ea\'ed\'ee\'ec \'f0\'e0\'e7\'ec\'e5\'f0\'ee\'ec", p, ":", smoothed_series)\par
+\f1\lang9\par
+     \par
+\ul\b\f0\lang1049\'c7\'e0\'e4\'e0\'f7\'e0 8\ulnone\b0\par
+\f1\lang9  \f0\lang1049\'c4\'e0\'ed \'ed\'e5\'ea\'ee\'f2\'ee\'f0\'fb\'e9 \'e2\'e5\'ea\'f2\'ee\'f0 \'f1 \'f6\'e5\'eb\'ee\'f7\'e8\'f1\'eb\'e5\'ed\'ed\'fb\'ec\'e8 \'ec\'e5\'f2\'ea\'e0\'ec\'e8 \'ea\'eb\'e0\'f1\'f1\'ee\'e2, \'ed\'e0\'ef\'e8\'f8\'e8\'f2\'e5 \'f4\'f3\'ed\'ea\'f6\'e8\'fe, \'ea\'ee\'f2\'ee\'f0\'e0\'ff \'e2\'fb\'ef\'ee\'eb\'ed\'ff\'e5\'f2 one-hot-encoding \'e4\'eb\'ff \'e4\'e0\'ed\'ed\'ee\'e3\'ee \'e2\'e5\'ea\'f2\'ee\'f0\'e0\par
+\f1\lang9 One-hot-encoding - \f0\lang1049\'ef\'f0\'e5\'e4\'f1\'f2\'e0\'e2\'eb\'e5\'ed\'e8\'e5, \'e2 \'ea\'ee\'f2\'ee\'f0\'ee\'ec \'ed\'e0 \'ec\'e5\'f1\'f2\'e5 \'ec\'e5\'f2\'ea\'e8 \'ed\'e5\'ea\'ee\'f2\'ee\'f0\'ee\'e3\'ee \'ea\'eb\'e0\'f1\'f1\'e0 \'f1\'f2\'ee\'e8\'f2 1, \'e2 \'ee\'f1\'f2\'e0\'eb\'fc\'ed\'fb\'f5 \'ef\'ee\'e7\'e8\'f6\'e8\'ff\'f5 \'f1\'f2\'ee\'e8\'f2 0. \'cd\'e0\'ef\'f0\'e8\'ec\'e5\'f0 \'e4\'eb\'ff \'e2\'e5\'ea\'f2\'ee\'f0\'e0 [0, 2, 3, 0] one-hot-encoding \'e2\'fb\'e3\'eb\'ff\'e4\'e8\'f2 \'ea\'e0\'ea: [[1, 0, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1], [1, 0, 0, 0]]\par
+\f1\lang9 def one_hot_encode(vector, num_classes):\par
+    encoded = np.zeros((len(vector), num_classes))  # \f0\lang1049\'d1\'ee\'e7\'e4\'e0\'e5\'ec \'ed\'f3\'eb\'e5\'e2\'f3\'fe \'ec\'e0\'f2\'f0\'e8\'f6\'f3 \'ed\'f3\'e6\'ed\'ee\'e3\'ee \'f0\'e0\'e7\'ec\'e5\'f0\'e0\par
+\f1\lang9     for i in range(len(vector)):\par
+        encoded[i][vector[i]] = 1  # \f0\lang1049\'d3\'f1\'f2\'e0\'ed\'e0\'e2\'eb\'e8\'e2\'e0\'e5\'ec 1 \'e2 \'ef\'ee\'e7\'e8\'f6\'e8\'fe \'ec\'e5\'f2\'ea\'e8 \'ea\'eb\'e0\'f1\'f1\'e0\par
+\f1\lang9     return encoded\par
+\par
+\b\f0\lang1049\'cf\'f0\'e8\'ec\'e5\'f0 \'e8\'f1\'ef\'ee\'eb\'fc\'e7\'ee\'e2\'e0\'ed\'e8\'ff\b0\par
+\f1\lang9 vector = [0, 2, 3, 0]\par
+num_classes = 4\par
+one_hot_encoded = one_hot_encode(vector, num_classes)\par
+print(one_hot_encoded)\par
+}
+ 
